@@ -358,17 +358,43 @@
 							  "...Hear me, do not reject me...",
 							  "...for it's not just for the sake of curiosity that I disturb your peace...")
 	invoke_msg = "...I pray, please come!"
-	favor_cost = 125
+	favor_cost = 150
+
+	var/adding_favor = 50
 
 	needed_aspects = list(
 		ASPECT_WACKY = 1,
 		ASPECT_WEAPON = 1,
 	)
 
+/datum/religion_rites/honkization/required_checks(mob/living/user, obj/structure/altar_of_gods/AOG)
+	var/items = 0
+	for(var/obj/item/I in AOG.loc)
+		if(I.blessed)
+			continue
+		items += 1
+
+	if(!items)
+		to_chat(user, "<span class='warning'>Not enough items.</span>")
+		return FALSE
+
+	if((adding_favor * items + favor_cost) > AOG.religion.favor)
+		to_chat(user, "<span class='warning'>Not enough favor for [items] items.</span>")
+		return FALSE
+	
+	return TRUE
+
 /datum/religion_rites/honkization/invoke_effect(mob/living/user, obj/structure/altar_of_gods/AOG)
 	. = ..()
 	if(!.)
 		return FALSE
 
-	for(var/obj/item/O in AOG.loc)
-		O.hitsound = list('sound/items/bikehorn.ogg')
+	var/items = 0
+	for(var/obj/item/I in AOG.loc)
+		if(I.blessed)
+			continue
+		items += 1
+		I.blessed = TRUE
+		I.hitsound = list('sound/items/bikehorn.ogg')
+
+	favor_cost = initial(favor_cost) + items * adding_favor
