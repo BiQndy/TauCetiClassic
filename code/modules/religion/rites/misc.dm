@@ -368,18 +368,18 @@
 	)
 
 /datum/religion_rites/honkization/required_checks(mob/living/user, obj/structure/altar_of_gods/AOG)
-	var/items = 0
+	var/items_count = 0
 	for(var/obj/item/I in AOG.loc)
 		if(I.blessed)
 			continue
-		items += 1
+		items_count += 1
 
-	if(!items)
+	if(!items_count)
 		to_chat(user, "<span class='warning'>Not enough items.</span>")
 		return FALSE
 
-	if((adding_favor * items + favor_cost) > AOG.religion.favor)
-		to_chat(user, "<span class='warning'>Not enough favor for [items] items.</span>")
+	if((adding_favor * items_count + favor_cost) > AOG.religion.favor)
+		to_chat(user, "<span class='warning'>Not enough favor for [items_count] items.</span>")
 		return FALSE
 	
 	return TRUE
@@ -389,12 +389,12 @@
 	if(!.)
 		return FALSE
 
-	var/items = 0
+	var/items_count = 0
 	for(var/obj/item/I in AOG.loc)
 		if(I.blessed)
 			continue
-		items += 1
+		items_count += 1
 		I.blessed = TRUE
 		I.hitsound = list('sound/items/bikehorn.ogg')
 
-	favor_cost = initial(favor_cost) + items * adding_favor
+	favor_cost = initial(favor_cost) + items_count * adding_favor
