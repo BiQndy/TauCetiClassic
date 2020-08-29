@@ -315,7 +315,7 @@
 		give_god_spells(deity)
 
 // Generate new rite_list
-/datum/religion/proc/update_rites()
+/datum/religion/proc/update_rites_info()
 	if(rites_by_name.len > 0)
 		rites_info = list()
 		// Generates a list of information of rite, used for examine() in altar_of_gods
@@ -390,7 +390,7 @@
 		add_aspect_reagents(asp, aspect_pred)
 
 	update_deities()
-	update_rites()
+	update_rites_info()
 
 // This proc is used to handle addition of aspects properly.
 // It expects aspect_list to be of form list(aspect_type = aspect power)

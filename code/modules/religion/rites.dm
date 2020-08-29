@@ -24,7 +24,7 @@
 
 /datum/religion_rites/proc/update_tip()
 	if(religion)
-		religion.update_rites()
+		religion.update_rites_info()
 
 /datum/religion_rites/proc/add_tips(tip)
 	tips |= tip
