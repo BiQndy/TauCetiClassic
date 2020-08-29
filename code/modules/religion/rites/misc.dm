@@ -358,7 +358,7 @@
 							  "...Hear me, do not reject me...",
 							  "...for it's not just for the sake of curiosity that I disturb your peace...")
 	invoke_msg = "...I pray, please come!"
-	favor_cost = 150
+	favor_cost = 100
 
 	var/adding_favor = 50
 
