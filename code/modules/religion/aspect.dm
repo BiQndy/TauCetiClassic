@@ -16,6 +16,9 @@
 	// List of /atom/movables that this aspect is registered to.
 	var/list/affecting
 
+	// Color of aspect
+	var/color
+
 /datum/aspect/Destroy()
 	QDEL_LIST_ASSOC_VAL(holy_turfs)
 	holy_turfs = null
@@ -47,6 +50,8 @@
 	desc = "You can consider it necromancy"
 	icon_state = "aspect_death"
 
+	color = COLOR_MAROON
+
 	god_desc = "Mortal humans can donate to increase your strength: blood bags, brains, internal organs and limbs."
 
 /datum/aspect/death/sacrifice(obj/item/I, mob/living/L, obj/structure/altar_of_gods/AOG)
@@ -71,6 +76,8 @@
 	desc = "Sci-fi items and other science"
 	icon_state = "aspect_science"
 
+	color = COLOR_VIOLET
+
 	god_desc = "Homosapiens and other xenos races can present all sorts of scientific things to gain your favour."
 
 /datum/aspect/science/sacrifice(obj/item/I, mob/living/L, obj/structure/altar_of_gods/AOG)
@@ -83,6 +90,8 @@
 	name = ASPECT_FOOD
 	desc = "Can be considered it greed"
 	icon_state = "aspect_food"
+
+	color = COLOR_BROWN_ORANGE
 
 	god_desc = "Peasants are required to pay you food."
 
@@ -102,6 +111,10 @@
 	desc = "Weapons and related things, war"
 	icon_state = "aspect_weapon"
 
+	color = COLOR_DARK_GRAY
+
+	god_desc = "Warriors must sacrifice powerful melee weapons to you!"
+
 /datum/aspect/weapon/sacrifice(obj/item/I, mob/living/L, obj/structure/altar_of_gods/AOG)
 	return (I.force ** 2) * 0.25
 
@@ -111,6 +124,8 @@
 	name = ASPECT_RESOURCES
 	desc = "Manipulated on minerals, metallic, glass and others"
 	icon_state = "ascept_resources"
+
+	color = COLOR_DARK_BROWN
 
 	god_desc = "May the workers bring diverse resources to your mercy."
 
@@ -127,11 +142,15 @@
 	desc = "Create any bio-materials"
 	icon_state = "aspect_spawn"
 
+	color = COLOR_PURPLE_GRAY
+
 //Gives mana from: allows you to accumulate mana when you beat yourself near the altar
 //Needed for: any spell in which there is damage to the chaplain or people around the altar should have this aspect.
 /datum/aspect/flagellation
 	name = ASPECT_FLAGELLATION
 	desc = "Self-flagellation, transformation of life energy into a magic"
+
+	color = COLOR_SKY_BLUE
 
 //Gives mana from: any heal near the altar
 //Needed for: spells and rituals related to the theme of heal, buff
@@ -140,6 +159,8 @@
 	desc = "Any heal, buff"
 	icon_state = "aspect_rescue"
 
+	color = COLOR_LIME
+
 //Gives mana from: ghosts staying near the altar
 //Needed for: spells and rituals related to the theme of ghosts
 /datum/aspect/mystic
@@ -147,12 +168,16 @@
 	desc = "Any interaction with ghosts"
 	icon_state = "aspect_mystic"
 
+	color = COLOR_NAVY_BLUE
+
 //Gives mana from: sacrificed charge, tech parts
 //Needed for: spells and rituals related to the theme of electrical equipment, electrical energy
 /datum/aspect/technology
 	name = ASPECT_TECH
 	desc = "Accepts electrical energy and tech parts, also manipulates any electrical equipment"
 	icon_state = "aspect_tech"
+
+	color = COLOR_CYAN
 
 	god_desc = "Accept electrical energy and quality tech parts."
 
@@ -180,12 +205,16 @@
 	desc = "The meaning of the aspect is that its rituals and spells are random"
 	icon_state = "aspect_chaos"
 
+	color = COLOR_ORANGE
+
 //Gives mana from: fools, how clowns
 //Needed for: spells and rituals related to the theme of clown equipments, items
 /datum/aspect/wacky
 	name = ASPECT_WACKY
 	desc = "Clownism"
 	icon_state = "aspect_wacky"
+
+	color = COLOR_YELLOW
 
 	god_desc = "The Family urgently needs a lot of BANANAS and BANANIUM!!!"
 
@@ -226,6 +255,8 @@
 /datum/aspect/absence
 	name = ASPECT_ABSENCE
 	desc = "Silence, allows you to use the power of the magician or cult as you want"
+
+	color = COLOR_WHITE
 
 // Children of this type somehow integrate with light on tiles.
 /datum/aspect/lightbending
@@ -272,6 +303,10 @@
 	desc = "Dark, darkness, obcurse, evil"
 	icon_state = "aspect_obscure"
 
+	color = COLOR_DARK_GUNMETAL
+
+	god_desc = "You need darkness in holy land"
+
 /datum/aspect/lightbending/darkness/get_light_gain(turf/simulated/floor/F)
 	return (0.6 - F.get_lumcount()) * power * 0.05
 
@@ -282,6 +317,10 @@
 	desc = "Light interaction"
 	icon_state = "aspect_light"
 
+	color = COLOR_AMBER
+
+	god_desc = "You need light in holy land"
+
 /datum/aspect/lightbending/light/get_light_gain(turf/simulated/floor/F)
 	return (F.get_lumcount() - 0.4) * power * 0.03
 
@@ -291,6 +330,8 @@
 	name = ASPECT_GREED
 	desc = "Greed"
 	icon_state = "aspect_greed"
+
+	color = COLOR_BOTTLE_GREEN
 
 	god_desc = "Not everything that shines is gold, sometimes dollar bills break the mold. You wish for wealth."
 
@@ -303,3 +344,5 @@
 	name = ASPECT_HERD
 	desc = "Herd, consure"
 	icon_state = "aspect_herd"
+
+	color = COLOR_LUMINOL
